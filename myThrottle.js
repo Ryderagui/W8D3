@@ -1,6 +1,5 @@
 Function.prototype.myThrottle = function(interval){
     let tooSoon = false;
-
     // let that = this;
     const timer = ()=> {
         if(tooSoon === false){
