@@ -47,35 +47,61 @@ class Board {
         }
 
         const diag_won = ()=> {
-            let left_diag = []
-            let right_diag = []
+            let left_diag = [];
+            let right_diag = [];
             for(let i = 0; i < this.grid.length; i++){
                 for(let j = 0; j <this.grid[i].length; j++){
                     if(i===j){
-                        left_diag.push(this.grid[i][j])
+                        left_diag.push(this.grid[i][j]);
                     }
                     //i0,j2,length2|| 2-2===0
                     //i1,j1,length2|| 2-1===1
                     //i2,j0,length2|| 2-0===2
                     if((this.grid.length-j)===i){
-                        right_diag.push(this.grid[i][j])
+                        right_diag.push(this.grid[i][j]);
                     }
                 }
-
             }
+
+            const left = left_diag.every((ele)=> {
+                if(ele===left_diag[0]){
+                    return true;
+                }
+            });
+
+            const right = right_diag.every((ele)=> {
+                if(ele===right_diag[0]){
+                    return true;
+                }
+            });
+            
+            return left || right;
         }
     }
 
     winner() {
-
+        
     }
 
     empty(pos) {
+        let row = pos[0];
+        let col = pos[1];
 
+
+        if(this.grid[row][col] === "_"){
+            return true;
+        }else {
+            return false;
+        }
     }
 
     place_mark(pos,mark) {
+        let row = pos[0];
+        let col = pos[1];
 
+        if(this.empty(pos)){
+            this.grid[row][col] = mark;
+        }
     }
 
 }
